@@ -10,7 +10,8 @@ type Message struct {
 }
 
 type ISubscriber interface {
-	Notify(msg Message)
+	Notify(msg *Message)
+	PrintMessages()
 }
 
 type PubSub struct {
@@ -24,7 +25,7 @@ func New() *PubSub {
 	}
 }
 
-func (ps *PubSub) Subscribe(topic string, subscriber ISubscriber) ISubscriber {
+func (ps *PubSub) Subscribe(topic string, subscriber *Subscriber) ISubscriber {
 	ps.mu.Lock()
 	defer ps.mu.Unlock()
 	ps.Subscribers[topic] = append(ps.Subscribers[topic], subscriber)
@@ -50,7 +51,7 @@ func (ps *PubSub) Publish(msg Message) {
 	subscribers := ps.Subscribers[msg.Topic]
 	for _, sub := range subscribers {
 		go func(s ISubscriber) {
-			s.Notify(msg)
+			s.Notify(&msg)
 		}(sub)
 	}
 

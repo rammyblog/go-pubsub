@@ -18,21 +18,18 @@ import (
 	"github.com/rammyblog/pubsub"
 )
 
-type CustomSubscriber struct {
-	Name string
-}
-
-func (cs *CustomSubscriber) Notify(msg pubsub.Message) {
-	fmt.Printf("[%s] Received message on topic %s: %v\n", cs.Name, msg.Topic, msg.Data)
-}
 
 func main() {
 	ps := pubsub.New()
 
 	// Create subscribers
-	subscriber1 := &CustomSubscriber{Name: "Subscriber 1"}
-	subscriber2 := &CustomSubscriber{Name: "Subscriber 2"}
+	subscriber1 := pubsub.NewSubscriber()
+	subscriber2 := pubsub.NewSubscriber()
 
+
+	subscriber1.AddTopic("topic1")
+	subscriber2.AddTopic("topic2")
+	
 	// Subscribe subscribers to topics
 	ps.Subscribe("topic1", subscriber1)
 	ps.Subscribe("topic2", subscriber2)

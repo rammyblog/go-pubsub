@@ -10,6 +10,9 @@ func main() {
 	subscribers := Sub(ps)
 	Pub(ps, subscribers)
 
+	for _, sub := range subscribers {
+		go sub.PrintMessages()
+	}
 	// Keep the program running
 	select {}
 }

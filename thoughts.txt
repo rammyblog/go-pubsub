@@ -1,0 +1,30 @@
+PubSUb
+
+Publisher
+// It send messages to the subscribers that are interested in the topic
+// It is also called as Producer
+
+Subscriber
+// It is the one who is interested in the topic
+// It is also called as Consumer
+// It can subscribe to multiple topics
+
+
+// Example
+// A news channel is a publisher
+// A person who is interested in sports news is a subscriber
+// A person who is interested in politics news is a subscriber
+// A person who is interested in both sports and politics news is a subscriber
+
+
+
+Message struct {
+    Topic string
+    Data []byte
+}
+
+type Subscriber struct {
+    Topic string
+    Channel chan Message
+    
+}

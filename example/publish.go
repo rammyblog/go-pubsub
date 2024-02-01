@@ -17,7 +17,7 @@ func Pub(ps *pubsub.PubSub, subscribers []pubsub.ISubscriber) {
 			time.Sleep(2 * time.Second)
 			ps.Publish(pubsub.Message{
 				Topic: "topic1",
-				Data:  "hello",
+				Data:  "Today is a good day ",
 			})
 		}
 	}()
@@ -27,7 +27,7 @@ func Pub(ps *pubsub.PubSub, subscribers []pubsub.ISubscriber) {
 			time.Sleep(2 * time.Second)
 			ps.Publish(pubsub.Message{
 				Topic: "topic2",
-				Data:  "yooo",
+				Data:  "Well, I made it through the day",
 			})
 		}
 	}()
@@ -37,7 +37,7 @@ func Pub(ps *pubsub.PubSub, subscribers []pubsub.ISubscriber) {
 			time.Sleep(2 * time.Second)
 			ps.Publish(pubsub.Message{
 				Topic: "topic3",
-				Data:  "hello there",
+				Data:  "We are all going to die",
 			})
 		}
 	}()
